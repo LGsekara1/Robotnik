@@ -1,2 +1,2 @@
 # Sharp IR pinout
-![SharpIR](ShaprIR.jpeg)
+![SharpIR](SharpIR.jpeg)
