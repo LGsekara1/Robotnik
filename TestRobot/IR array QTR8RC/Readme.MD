@@ -1,5 +1,5 @@
 ## IR 8 channel array (QTR8RC)
-![QTR8RC](QTR8RC 8 channel pinout.png)
+![QTR8RC](QTR8RC-8-channel-pinout.png)
 
 # Pinout with description
 # Micro-controller interface pins for logic-level control
