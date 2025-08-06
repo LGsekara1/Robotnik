@@ -1,10 +1,11 @@
 # Motor driver:
-  LPWM - Purple
-  RPWM - Bluw
-  R_EN - White
-  L_EN - Brown
-  VCC - Red
-  GND - Black
+
+  * LPWM - Purple
+  * RPWM - Bluw
+  * R_EN - White
+  * L_EN - Brown
+  * VCC - Red
+  * GND - Black
 
 # Sharp IR:
 
