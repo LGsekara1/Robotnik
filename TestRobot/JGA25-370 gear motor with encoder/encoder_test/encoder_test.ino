@@ -4,7 +4,7 @@
 volatile long encoderPos = 0; // Position counter
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(ENCA, INPUT);
   pinMode(ENCB, INPUT);
 
