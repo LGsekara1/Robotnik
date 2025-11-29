@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": "../../../../vs code"
+		},
+		{
+			"name": "wheel testing",
+			"path": "../../wheel testing"
+		},
+		{
+			"name": "line follower testing 1",
+			"path": "../../line follower testing 1"
+		},
+		{
+			"name": "line follower testing 2",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"print": "cpp"
+		}
+	}
+}
