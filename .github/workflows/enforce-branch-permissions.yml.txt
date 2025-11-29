@@ -1,0 +1,34 @@
+name: Enforce Branch Permissions
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  permission-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check permissions
+        shell: bash
+        run: |
+          echo " Checking branch permissions..."
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "User who triggered the push: $GITHUB_ACTOR"
+
+          # Restrict src branch
+          if [[ "$GITHUB_REF_NAME" == "src" && "$GITHUB_ACTOR" != "YohanBandara" ]]; then
+            echo "ERROR: Only UserA is allowed to push or open PRs to the 'src' branch."
+            exit 1
+          fi
+
+          # Restrict debugging branch
+          if [[ "$GITHUB_REF_NAME" == "debugging" && "$GITHUB_ACTOR" != "LGsekara1" ]]; then
+            echo "ERROR: Only UserB is allowed to push or open PRs to the 'debugging' branch."
+            exit 1
+          fi
+
+          echo "Permission check passed for this branch."
