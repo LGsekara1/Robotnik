@@ -4,11 +4,10 @@
 volatile long encoderPos = 0; // Position counter
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   pinMode(ENCA, INPUT);
   pinMode(ENCB, INPUT);
 
-  // Use interrupts for better accuracy
   attachInterrupt(digitalPinToInterrupt(ENCA), readEncoder, CHANGE);
 }
 
