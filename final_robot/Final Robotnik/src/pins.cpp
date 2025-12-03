@@ -10,10 +10,11 @@ void setupPins(){
     pinMode(ENCODER_L1,INPUT);
     pinMode(ENCODER_L2,INPUT);
     pinMode(ENCODER_R1,INPUT);
-    pinMode(ENCODER_R1,INPUT);
+    pinMode(ENCODER_R2,INPUT);
 
     for (int i = 0; i < 8; i++) {
-        pinMode(IRSensorPins[i], INPUT);
+        pinMode(IRSensorPinsDigital[i], INPUT);
+        pinMode(IRSensorPinsAnalog[i], INPUT);
     }
 
     pinMode(XSHUT_1, OUTPUT);
@@ -22,6 +23,18 @@ void setupPins(){
     pinMode(XSHUT_4, OUTPUT);
     pinMode(XSHUT_5, OUTPUT);
     pinMode(XSHUT_6, OUTPUT);
+    pinMode(XSHUT_7, OUTPUT);
 
 
+    pinMode(COLOR1_S0, OUTPUT);
+    pinMode(COLOR1_S1, OUTPUT);
+    pinMode(COLOR1_S2, OUTPUT);
+    pinMode(COLOR1_S3, OUTPUT);
+    pinMode(COLOR1_OUT, INPUT);
+
+    pinMode(COLOR2_S0, OUTPUT);
+    pinMode(COLOR2_S1, OUTPUT);
+    pinMode(COLOR2_S2, OUTPUT);
+    pinMode(COLOR2_S3, OUTPUT);
+    pinMode(COLOR2_OUT, INPUT);
 }

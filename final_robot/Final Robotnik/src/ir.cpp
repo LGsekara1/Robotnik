@@ -1,11 +1,96 @@
 #include "ir.h"
-#include "pins.h"
+#include "pins.h" 
+#include "gyro.h"
+#include "motion.h"
 
-const int NUM_IR_SENSORS=8;
-int ir_values[8]={0,0,0,0,0,0,0,0};
+const int NUM_IR_SENSORS = 8;
+int ir_values[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+int ir_thresholds[8] = {218,249,189,197,208,229,235,232};//{0, 0, 0, 0, 0, 0, 0, 0};
+bool isCalibrated = false;
 
-void readIR() {
+
+
+void calibrateIR() {
+    int min_vals[8];
+    int max_vals[8];
+
     for (int i = 0; i < NUM_IR_SENSORS; i++) {
-        ir_values[i] = digitalRead(IRSensorPins[i]);
+        min_vals[i] = 1023;
+        max_vals[i] = 0;
+    }
+
+    Serial.println("Calibrating... SWIPE ROBOT OVER LINE!");
+
+    unsigned long startTime = millis();
+    while (millis() - startTime < 5000) {
+        for (int i = 0; i < NUM_IR_SENSORS; i++) {
+            int val = analogRead(IRSensorPinsAnalog[i]);
+            
+            if (val > max_vals[i]) max_vals[i] = val; // Found new Black
+            if (val < min_vals[i]) min_vals[i] = val; // Found new White
+        }
+        delay(5); 
+    }
+
+    Serial.println("Calibration Done. Thresholds:");
+    for (int i = 0; i < NUM_IR_SENSORS; i++) {
+        ir_thresholds[i] = (min_vals[i] + max_vals[i]) / 2;
+        
+        Serial.print(ir_thresholds[i]);
+        Serial.print("\t");
+    }
+    isCalibrated = true;
+    Serial.println();
+}
+
+
+void setupCalibrateIR() {
+    float initial_orientation_x=readGyro();
+    startMotors(150,-150);
+    calibrateIR();
+    stopMotors();
+    float final_orientation_x=readGyro();
+    float difference_orientation_x = initial_orientation_x - final_orientation_x ;
+    if (initial_orientation_x > final_orientation_x ) rotateRobot('R', difference_orientation_x);
+    else rotateRobot('L', -difference_orientation_x);
+}
+
+
+void readAnalogIR() {
+    for (int i = 0; i < NUM_IR_SENSORS; i++) {
+        int val = analogRead(IRSensorPinsAnalog[i]);
+        
+        if (val > ir_thresholds[i]) ir_values[i] = 1;
+        else ir_values[i] = 0;
     }
 }
+
+
+void readDigitalIR() {
+    for (int i = 0; i < NUM_IR_SENSORS; i++) {
+        ir_values[i] = digitalRead(IRSensorPinsDigital[i]);
+    }
+}
+
+
+void readIR() {
+    if (isCalibrated) readAnalogIR();
+    else readDigitalIR();
+    // readDigitalIR();
+    // readAnalogIR();
+}
+
+
+
+
+// #include "ir.h"
+// #include "pins.h"
+
+// const int NUM_IR_SENSORS=8;
+// int ir_values[8]={0,0,0,0,0,0,0,0};
+
+// void readIR() {
+//     for (int i = 0; i < NUM_IR_SENSORS; i++) {
+//         ir_values[i] = digitalRead(IRSensorPins[i]);
+//     }
+// }
