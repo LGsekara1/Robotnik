@@ -1,6 +1,8 @@
 #include <Wire.h>
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
+#include <Arduino.h>
+
 
 #define width 128
 #define height 64
