@@ -41,17 +41,18 @@ const int COLOR1_S2 = 32;
 const int COLOR1_S3 = 33;
 const int COLOR1_OUT = 34;
 
-const int COLOR2_S0 = A8;
-const int COLOR2_S1 = A9;
-const int COLOR2_S2 = A10;
-const int COLOR2_S3 = A11;
-const int COLOR2_OUT = A12;
+const int COLOR2_S0 =A8;
+const int COLOR2_S1 =A9;
+const int COLOR2_S2 =A10;
+const int COLOR2_S3 =A11;
+const int COLOR2_OUT =A12;
 
 const int GYRO_INTERRUPT_PIN = 2; 
 
 const int SHARP_IR_PIN=A0;
 
-
+const int IRSensorPinLeft=A1;
+const int IRSensorPinRight=A2;
 
 
 

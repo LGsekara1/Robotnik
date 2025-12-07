@@ -6,7 +6,7 @@
 
 
 int Task3(){
-    
+    goDistance(50,50);
     startMotors(50,50);
     while(true){
         readIR();delay(10);

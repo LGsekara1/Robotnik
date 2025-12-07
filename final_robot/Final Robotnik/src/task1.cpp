@@ -52,7 +52,7 @@ void turnTo(int targetDirection) {
 
 void move() {
     nodeTraversal(70,70); 
-    goDistance(30,70); // Center on node
+    //goDistance(30,70); // Center on node
     
     if (facing == NORTH) robotY++;
     else if (facing == EAST)  robotX++;

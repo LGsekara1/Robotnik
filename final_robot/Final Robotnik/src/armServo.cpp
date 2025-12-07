@@ -2,6 +2,8 @@
 #include "pins.h"
 #include "motion.h"
 #include "sharpIr.h"
+#include "encoder.h"
+#include "lineFollowing.h"
 // #include <Arduino.h>
 #include <Servo.h>
 
@@ -76,7 +78,16 @@ void boxHorizontalOpen(){
 }
 
 void getBox(){boxHorizontalOpen();boxVerticalDown();boxHorizontalClose();}
-void grabBox(){boxHorizontalOpen();boxVerticalDown();goDistance(-100);boxHorizontalClose();goDistance(100);}
+
+void grabBox(){
+    resetPulses();
+    while(distance()<250)runLineFollower(50,50);
+    boxHorizontalOpen();boxVerticalDown();
+    goDistance(-300,50);
+    boxHorizontalClose();
+    goDistance(50,50);
+}
+
 void releaseBox(){boxVerticalUp();}
 
 
@@ -157,68 +168,3 @@ void ballHorizontalOut(){
        ballHorizontalStatus=1;
     }
 }
-
-
-
-
-// void ballHorizontalIn(){
-//     if (ballHorizontalStatus==180){return;}
-//     else{
-//        for (int i=ballHorizontalStatus;i<=180;i++){
-//            ballHorizontal.write(i);
-//            delay(5);
-//        }
-//        ballHorizontalStatus=180;
-//     }
-// }
-
-
-// void ballHorizontalOut(){
-//     if (ballHorizontalStatus==0){return;}
-//     else{
-//        for (int i=ballHorizontalStatus;i>=0;i--){
-//            ballHorizontal.write(i);
-//            delay(5);
-//        }
-//        ballHorizontalStatus=0;
-//     }
-// }
-
-
-
-// void ballHorizontalAdjust(){
-//     float goDistance=readSharpIR()-100;
-//     goDistance=constrain(goDistance,0,40);
-//     int goPhase=180-goDistance*180/40;
-//     if (goPhase>ballHorizontalStatus){
-//         for (int i=ballHorizontalStatus;i<=goPhase;i++){ballHorizontal.write(i);delay(5);}
-//     }
-//     else {
-//         for (int i=ballHorizontalStatus;i>=goPhase;i--){ballHorizontal.write(i);delay(5);}
-//     }
-//     ballHorizontalStatus=goPhase;
-// }
-
-
-
-
-
-void runBallPicker(){
-    ballCylinderOut();delay(500);
-    // ballHorizontalOut();delay(500);
-}
-
-void pickBall(){
-    ballHorizontalOut();delay(500);
-    ballVerticalDown();delay(500);
-    ballVerticalUp();delay(500);
-    ballHorizontalIn();delay(500);
-
-}
-
-
-void endBallPicker(){
-    // ballHorizontalIn();delay(500);
-    ballCylinderIn();delay(500);
-}
-

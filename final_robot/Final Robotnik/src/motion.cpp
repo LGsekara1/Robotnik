@@ -55,8 +55,8 @@ void stopMotors() {
 float time_per_degree = 1400.0 / 90.0; 
 
 void setRotation(char direction, int speed = 150) {
-  int rotationOffsetL=-15;
-  int rotationOffsetR=0;
+  int rotationOffsetL=5;
+  int rotationOffsetR=-13;
   if (direction == 'L') {
     analogWrite(L_LPWM, 0);
     analogWrite(L_RPWM, speed+rotationOffsetL);
@@ -264,7 +264,7 @@ void nodeTraversal(int speed=100,int variation=100){
   while(true){
       runLineFollower(speed,variation);
       if (isJunction()){
-          goDistance(30,speed);
+          goDistance(110,speed);
           return;
       }
   }
@@ -289,6 +289,10 @@ void countTraversal(int target_count=1,int speed=100,int variation=100){
   }
 
 }
+
+
+
+
 
 
 

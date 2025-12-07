@@ -125,6 +125,8 @@ bool isJunction(){
     for(int i=3;i<8;i++){
         if (ir_values[i]==1){isRight=false;break;}
     }
+    if (digitalRead(IRSensorPinLeft))isLeft=false;
+    if (digitalRead(IRSensorPinRight))isRight=false;
     return (isRight || isLeft);
 }
 
