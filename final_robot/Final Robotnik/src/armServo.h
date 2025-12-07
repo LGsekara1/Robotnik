@@ -6,6 +6,7 @@
 void setupServo();
 void getBox();
 void releaseBox();
+void grabBox();
 
 void ballVerticalUp();
 void ballVerticalDown();
@@ -13,6 +14,11 @@ void ballCylinderIn();
 void ballCylinderOut();
 void ballHorizontalIn();
 void ballHorizontalOut();
+// void ballHorizontalAdjust();
+
+void runBallPicker();
+void pickBall();
+void endBallPicker();
 
 
 #endif

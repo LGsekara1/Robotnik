@@ -1,5 +1,7 @@
 #include "armServo.h"
 #include "pins.h"
+#include "motion.h"
+#include "sharpIr.h"
 // #include <Arduino.h>
 #include <Servo.h>
 
@@ -12,16 +14,18 @@ Servo ballCylinder;    // 0 - 160
 int boxVerticalStatus=0;      //0-up  1-down
 int boxHorizontalStatus=0;    //0-closed  1-open
 int ballVerticalStatus=0;     //0-up 1-down
-int ballHorizontalStatus=0;   //0-in
 int ballCylinderStatus=0;     //0-in 1-out
+int ballHorizontalStatus=0;   //0-in 180-out
+int ballHorizontalDiscreteStatus=180;   //0-in 180-out
 
 
 void setupServo(){
     boxVertical.attach(BOX_SERVO_VERTICAL_PIN);boxVertical.write(75);
     boxHorizontal.attach(BOX_SERVO_HORIZONTAL_PIN);boxHorizontal.write(142);
-    ballVertical.attach(BALL_SERVO_VERTICAL_PIN);ballVertical.write(0);
-    ballHorizontal.attach(BALL_SERVO_HORIZONTAL_PIN);ballHorizontal.write(0);
-    ballCylinder.attach(BALL_SERVO_CYLINDER_PIN);ballCylinder.write(0);
+
+    ballVertical.attach(BALL_SERVO_VERTICAL_PIN);ballVertical.write(180);
+    ballHorizontal.attach(BALL_SERVO_HORIZONTAL_PIN);ballHorizontal.write(180);
+    ballCylinder.attach(BALL_SERVO_CYLINDER_PIN);ballCylinder.write(180);
 }
 
 
@@ -71,13 +75,22 @@ void boxHorizontalOpen(){
     }
 }
 
+void getBox(){boxHorizontalOpen();boxVerticalDown();boxHorizontalClose();}
+void grabBox(){boxHorizontalOpen();boxVerticalDown();goDistance(-100);boxHorizontalClose();goDistance(100);}
+void releaseBox(){boxVerticalUp();}
+
+
+
+
+
+
 
 
 // ball
 void ballVerticalUp(){
     if (ballVerticalStatus==0){return;}
     else{
-       for (int i=180;i>=0;i--){
+       for (int i=0;i<=0;i++){
            ballVertical.write(i);
            delay(10);
        }
@@ -89,7 +102,7 @@ void ballVerticalUp(){
 void ballVerticalDown(){
     if (ballVerticalStatus==1){return;}
     else{
-       for (int i=0;i<=180;i++){
+       for (int i=180;i>=0;i--){
            ballVertical.write(i);
            delay(10);
        }
@@ -102,7 +115,7 @@ void ballVerticalDown(){
 void ballCylinderIn(){
     if (ballCylinderStatus==0){return;}
     else{
-       for (int i=180;i>=0;i--){
+       for (int i=0;i<=180;i++){
            ballCylinder.write(i);
            delay(5);
        }
@@ -113,7 +126,7 @@ void ballCylinderIn(){
 void ballCylinderOut(){
     if (ballCylinderStatus==1){return;}
     else{
-       for (int i=0;i<=180;i++){
+       for (int i=180;i>=0;i--){
            ballCylinder.write(i);
            delay(5);
        }
@@ -125,7 +138,7 @@ void ballCylinderOut(){
 void ballHorizontalIn(){
     if (ballHorizontalStatus==0){return;}
     else{
-       for (int i=180;i>=0;i--){
+       for (int i=0;i<=180;i++){
            ballHorizontal.write(i);
            delay(5);
        }
@@ -137,7 +150,7 @@ void ballHorizontalIn(){
 void ballHorizontalOut(){
     if (ballHorizontalStatus==1){return;}
     else{
-       for (int i=0;i<=180;i++){
+       for (int i=180;i>=0;i--){
            ballHorizontal.write(i);
            delay(5);
        }
@@ -148,9 +161,64 @@ void ballHorizontalOut(){
 
 
 
+// void ballHorizontalIn(){
+//     if (ballHorizontalStatus==180){return;}
+//     else{
+//        for (int i=ballHorizontalStatus;i<=180;i++){
+//            ballHorizontal.write(i);
+//            delay(5);
+//        }
+//        ballHorizontalStatus=180;
+//     }
+// }
+
+
+// void ballHorizontalOut(){
+//     if (ballHorizontalStatus==0){return;}
+//     else{
+//        for (int i=ballHorizontalStatus;i>=0;i--){
+//            ballHorizontal.write(i);
+//            delay(5);
+//        }
+//        ballHorizontalStatus=0;
+//     }
+// }
+
+
+
+// void ballHorizontalAdjust(){
+//     float goDistance=readSharpIR()-100;
+//     goDistance=constrain(goDistance,0,40);
+//     int goPhase=180-goDistance*180/40;
+//     if (goPhase>ballHorizontalStatus){
+//         for (int i=ballHorizontalStatus;i<=goPhase;i++){ballHorizontal.write(i);delay(5);}
+//     }
+//     else {
+//         for (int i=ballHorizontalStatus;i>=goPhase;i--){ballHorizontal.write(i);delay(5);}
+//     }
+//     ballHorizontalStatus=goPhase;
+// }
 
 
 
 
-void getBox(){boxHorizontalOpen();boxVerticalDown();boxHorizontalClose();}
-void releaseBox(){boxVerticalUp();}
+
+void runBallPicker(){
+    ballCylinderOut();delay(500);
+    // ballHorizontalOut();delay(500);
+}
+
+void pickBall(){
+    ballHorizontalOut();delay(500);
+    ballVerticalDown();delay(500);
+    ballVerticalUp();delay(500);
+    ballHorizontalIn();delay(500);
+
+}
+
+
+void endBallPicker(){
+    // ballHorizontalIn();delay(500);
+    ballCylinderIn();delay(500);
+}
+
