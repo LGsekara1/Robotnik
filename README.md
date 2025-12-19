@@ -15,6 +15,8 @@ Tasks to cover:
 5. Box picking.
 6. Ball shooting.
 
+[Task Sheet - 📎Robot Design Task](media/Robot_Design_Task_2025.pdf)
+
 ## Hardware Specs 🦾
 • Dimensions - 220mm x 180mm
 • Power Supply - 3 cell LiPo 11.1 V
@@ -46,10 +48,16 @@ Tasks to cover:
  1. Gripper mechanism for ball picking.
 ![Mechanical parts](Mechanical_parts.jpg)
 
+![Ball picking arena](Ball_arena.jpg)
+
 The balls were mounted on a 10cm cylindrical mount and 6 such mounts were kept together in a circular fashion. Therefore a cylindrical arm was selected to pick the balls.
 
 3. Clamping and dragging mechanism for box picking.
-![Box picking](Box_picking.jpg)
+<p align = "center">
+ <img src = "media/Box_picking.jpg",width = "45%">
+ <img src = "media/Box_arena.png",width = "45%">
+</p>
+
 
 Sinces boxes were of dimensions 5cm x 10cm x 10cm, it was decided to grab the box and drag along the way until being placed in the reserved ares of respective colour.
 
@@ -58,7 +66,8 @@ Sinces boxes were of dimensions 5cm x 10cm x 10cm, it was decided to grab the bo
 
 The task was to shoot the picked ball through a ring placed in a pre-determined location. Hence a design with two design BLDC motors was used.
 
-
+## Arena
+![Arena](Arena.png)
 
 
 
