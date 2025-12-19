@@ -26,3 +26,8 @@ void readEncoder() {
     encoderPos--; // CCW
   }
 }
+
+
+
+
+
