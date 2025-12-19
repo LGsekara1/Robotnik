@@ -2,6 +2,7 @@
 
 void setupPins(){
     pinMode(indicator,OUTPUT);
+    
     pinMode(L_LPWM, OUTPUT);
     pinMode(L_RPWM, OUTPUT);
     pinMode(R_LPWM, OUTPUT);
@@ -11,6 +12,7 @@ void setupPins(){
     pinMode(ENCODER_L2,INPUT);
     pinMode(ENCODER_R1,INPUT);
     pinMode(ENCODER_R2,INPUT);
+
 
     for (int i = 0; i < 8; i++) {
         pinMode(IRSensorPinsDigital[i], INPUT);
@@ -37,4 +39,7 @@ void setupPins(){
     pinMode(COLOR2_S2, OUTPUT);
     pinMode(COLOR2_S3, OUTPUT);
     pinMode(COLOR2_OUT, INPUT);
+
+    pinMode(GYRO_INTERRUPT_PIN, INPUT);
+
 }

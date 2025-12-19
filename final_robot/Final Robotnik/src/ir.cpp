@@ -44,16 +44,16 @@ void calibrateIR() {
 }
 
 
-void setupCalibrateIR() {
-    float initial_orientation_x=readGyro();
-    startMotors(150,-150);
-    calibrateIR();
-    stopMotors();
-    float final_orientation_x=readGyro();
-    float difference_orientation_x = initial_orientation_x - final_orientation_x ;
-    if (initial_orientation_x > final_orientation_x ) rotateRobot('R', difference_orientation_x);
-    else rotateRobot('L', -difference_orientation_x);
-}
+// void setupCalibrateIR() {
+//     float initial_orientation_x=readGyro();
+//     startMotors(150,-150);
+//     calibrateIR();
+//     stopMotors();
+//     float final_orientation_x=readGyro();
+//     float difference_orientation_x = initial_orientation_x - final_orientation_x ;
+//     if (initial_orientation_x > final_orientation_x ) rotateRobot('R', difference_orientation_x);
+//     else rotateRobot('L', -difference_orientation_x);
+// }
 
 
 void readAnalogIR() {
@@ -83,14 +83,60 @@ void readIR() {
 
 
 
-// #include "ir.h"
-// #include "pins.h"
 
-// const int NUM_IR_SENSORS=8;
-// int ir_values[8]={0,0,0,0,0,0,0,0};
 
-// void readIR() {
-//     for (int i = 0; i < NUM_IR_SENSORS; i++) {
-//         ir_values[i] = digitalRead(IRSensorPins[i]);
-//     }
-// }
+
+
+bool allZeros(int arr[], int size){
+    for (int i=0;i<size;i++){
+        if (arr[i]==1)return 0;
+    }
+    return 1;
+}
+
+bool allOnes(int arr[], int size){
+    for (int i=0;i<size;i++){
+        if (arr[i]==0)return 0;
+    }
+    return 1;
+}
+
+
+bool isNextNode(){
+    readIR();
+    int count=0;
+    for (int i=0;i<8;i++){
+        if (ir_values[i]==0){count++;}
+        else{count=0;}
+        if (count>1) return 1;
+    }
+    return 0;
+}
+
+
+
+bool isJunction(){
+    bool isLeft=true;
+    bool isRight=true;
+    // readIR();
+    for(int i=0;i<5;i++){
+        if (ir_values[i]==1){isLeft=false;break;}
+    }
+    for(int i=3;i<8;i++){
+        if (ir_values[i]==1){isRight=false;break;}
+    }
+    if (digitalRead(IRSensorPinLeft))isLeft=false;
+    if (digitalRead(IRSensorPinRight))isRight=false;
+    return (isRight || isLeft);
+}
+
+
+bool isWhiteLine(){
+    readIR();
+    int count=0;
+    for (int i=0;i<8;i++){
+        if (ir_values[i]==0){count++;}
+        if (count>6) return 1;
+    }
+    return 0;
+}

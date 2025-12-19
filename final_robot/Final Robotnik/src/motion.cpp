@@ -55,8 +55,8 @@ void stopMotors() {
 float time_per_degree = 1400.0 / 90.0; 
 
 void setRotation(char direction, int speed = 150) {
-  int rotationOffsetL=-15;
-  int rotationOffsetR=0;
+  int rotationOffsetL=5;
+  int rotationOffsetR=-13;
   if (direction == 'L') {
     analogWrite(L_LPWM, 0);
     analogWrite(L_RPWM, speed+rotationOffsetL);
@@ -73,34 +73,112 @@ void setRotation(char direction, int speed = 150) {
 }
 
 
+// void rotateRobot(char direction, float target_angle) {
+//   if (target_angle < 0) target_angle = 360 - target_angle;
+//   if (!gyro_ok) {
+//     setRotation(direction);
+//     delay(time_per_degree * target_angle); 
+//     stopMotors();
+//     return;
+//   }
+//   else {
+//     flushGyro();
+//     readGyro();
+//     float previous_angle = currentYaw;
+//     float total_turned = 0; 
+//     setRotation(direction);
+
+//     while (true) {
+//       readGyro();
+//       float current_angle = currentYaw;
+//       float delta = current_angle - previous_angle;
+
+//       if (delta < -180) {delta += 360; }
+//       else if (delta > 180) {delta -= 360;}
+
+//       total_turned += abs(delta);
+//       previous_angle = current_angle;
+
+//       if (total_turned >= target_angle) {stopMotors();break;} 
+//       delay(10); 
+//     }
+//   }
+// }
+
+
 void rotateRobot(char direction, float target_angle) {
-  if (target_angle < 0) target_angle = 360 - target_angle;
+  // stopMotors();
+  // delay(100);
+  if (target_angle < 0) target_angle = 360.0 - target_angle;
+  
   if (!gyro_ok) {
     setRotation(direction);
     delay(time_per_degree * target_angle); 
     stopMotors();
+    return;
   }
-  else {
-    flushGyro();
-    float previous_angle = readGyro();
-    float total_turned = 0; 
-    setRotation(direction);
 
-    while (true) {
-      float current_angle = readGyro();
-      float delta = current_angle - previous_angle;
+  flushGyro(); 
+  bool starting_valid = false;
+  for(int i=0; i<10; i++) {
+     if(updateGyro()) { starting_valid = true; break; }
+     delay(5);
+  }
+  
+  float previous_angle = currentYaw;
+  float total_turned = 0; 
+  
+  unsigned long start_time = millis();
+  unsigned long timeout = 5000; 
 
-      if (delta < -180) {delta += 360; }
-      else if (delta > 180) {delta -= 360;}
+  setRotation(direction);
 
-      total_turned += abs(delta);
-      previous_angle = current_angle;
+  while (millis() - start_time < timeout) {
+    if (updateGyro()) {
+        float current_angle = currentYaw;
+        float delta = current_angle - previous_angle;
 
-      if (total_turned >= target_angle) {stopMotors();break;} 
-      delay(10); 
+        if (delta < -180) delta += 360;
+        else if (delta > 180) delta -= 360;
+
+        total_turned += abs(delta);
+        previous_angle = current_angle;
+
+        if (total_turned >= target_angle) {
+            stopMotors();
+            return;
+        }
     }
   }
+
+  stopMotors();
 }
+
+
+
+
+
+
+void turnUntilLine(char direction){
+  setRotation(direction);
+  while(true){
+    readIR();
+    if (ir_values[2]==0 && ir_values[3]==0 && ir_values[4]==0){stopMotors();return;}
+    if (ir_values[3]==0 && ir_values[3]==0 && ir_values[5]==0){stopMotors();return;}
+  }
+}
+
+
+void turnUntilLine2(char direction){
+  rotateRobot(direction,45);
+  setRotation(direction);
+  while(true){
+    readIR();
+    if (ir_values[2]==0 && ir_values[3]==0 && ir_values[4]==0){stopMotors();return;}
+    if (ir_values[3]==0 && ir_values[3]==0 && ir_values[5]==0){stopMotors();return;}
+  }
+}
+
 
 
 
@@ -155,7 +233,21 @@ void goDistance(float distance, int speed=100){
     }
 }
 
-bool isJunction(){
+// bool isJunction(){
+//     bool isLeft=true;
+//     bool isRight=true;
+//     for(int i=0;i<5;i++){
+//         if (ir_values[i]==1){isLeft=false;break;}
+//     }
+//     for(int i=3;i<8;i++){
+//         if (ir_values[i]==1){isRight=false;break;}
+//     }
+//     return (isRight || isLeft);
+// }
+
+
+
+bool isJunction2(){
     bool isLeft=true;
     bool isRight=true;
     for(int i=0;i<5;i++){
@@ -172,7 +264,7 @@ void nodeTraversal(int speed=100,int variation=100){
   while(true){
       runLineFollower(speed,variation);
       if (isJunction()){
-          goDistance(30,speed);
+          goDistance(110,speed);
           return;
       }
   }
@@ -197,6 +289,10 @@ void countTraversal(int target_count=1,int speed=100,int variation=100){
   }
 
 }
+
+
+
+
 
 
 
