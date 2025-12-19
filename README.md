@@ -8,7 +8,7 @@ A multi-tasking robot with self-navigation was designed. The power supply, contr
 <img src = "media/cover_photo.jpg" width = "300" height = "200" align ="center">
 
 Tasks to cover: 
-1. Line following - continous and dashed lines.
+1. Line following - continuous and dashed lines.
 2. Grid solving.
 3. Wall following (circular wall).
 4. Ramp completion and climbing.
@@ -69,7 +69,7 @@ Sinces boxes were of dimensions 5cm x 10cm x 10cm, it was decided to grab the bo
 The task was to shoot the picked ball through a ring placed in a pre-determined location. Hence a design with two design BLDC motors was used.
 
 ## Arena
-<img src = "arena.png" width = "60%" height = "300">
+<img src = "media/arena.png" width = "60%" height = "500">
 
 ## Team and task distribution
 
