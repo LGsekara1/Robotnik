@@ -59,7 +59,7 @@ The balls were mounted on a 10cm cylindrical mount and 6 such mounts were kept t
 2. Clamping and dragging mechanism for box picking.
 <p align = "center">
  
- <img src = "media/box_arena.png",width = "45%" height = "300">
+ <img src = "media/box_arena.png" width = "45%" height = "300">
 </p>
 
 
