@@ -58,7 +58,7 @@ The balls were mounted on a 10cm cylindrical mount and 6 such mounts were kept t
 
 2. Clamping and dragging mechanism for box picking.
 <p align = "center">
- <img src = "media/Box_picking.jpg",width = "45%" height = "300">
+ 
  <img src = "media/box_arena.png",width = "45%" height = "300">
 </p>
 
@@ -66,7 +66,7 @@ The balls were mounted on a 10cm cylindrical mount and 6 such mounts were kept t
 Sinces boxes were of dimensions 5cm x 10cm x 10cm, it was decided to grab the box and drag along the way until being placed in the reserved ares of respective colour.
 
 3. Ball shooting mechanism.
-<img src = "Ball_shooting.jpg" width = "60%" height = "300">
+
 
 The task was to shoot the picked ball through a ring placed in a pre-determined location. Hence a design with two design BLDC motors was used.
 
