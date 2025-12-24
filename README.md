@@ -20,7 +20,9 @@ Tasks to cover:
 
 ## Hardware Specs 🦾
 • Dimensions - 220mm x 180mm
+
 • Power Supply - 3 cell LiPo 11.1 V
+
 • Components 
 1. Arduino Mega 2560[![Arduino](https://img.shields.io/badge/Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)](docs/arduino.md)
 
