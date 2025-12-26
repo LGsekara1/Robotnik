@@ -33,9 +33,10 @@ Tasks to cover:
 4. BTS 7960 motor drivers.
 5. MG90 and MG995 servo motors.
 6. VL53LOX TOF sensors.
-7. TCS3200 colour sensors.
-8. DC-DC step down buck convertors.
-9. OLED SPI display.
+7. MPU 6050
+8. TCS3200 colour sensors.
+9. DC-DC step down buck convertors.
+10. OLED SPI display.
 
 ## Software specs 💻
 • Programming language - C++
@@ -55,6 +56,8 @@ Tasks to cover:
 2. To detect balls and boxes the VL53L0X TOF sensor was used. 6 such sensor mounted on a seperate mount were poised at the front, left and right of the robot for box detection and grid solving. Additional TOF sensor was poised at right back to assist in wall following.
 
 <img src = "media/TOF.jpeg" width = 40% height = "300" align = "center">
+
+3. Used the MPU6050 which had an accelerometer and gyroscope, so as to have proper control in traversing the ramp and to take sharp right turns.
 
 
 ## Power distribution and power subsystem
