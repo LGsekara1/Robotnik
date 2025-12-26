@@ -50,11 +50,11 @@ Tasks to cover:
 ## Navigation system
 1. The primary task of navigation was line following, hence a Reykha S8 sensor IR array was used due to the high precision and accuracy of the TCRT5000 sensor. To minimize cross-talk a custom enclosure was designed.
 
-<img src ="IR.jpeg" width = 40% height = "300" align = "center">
+<img src ="media/IR.jpeg" width = 40% height = "300" align = "center">
 
 2. To detect balls and boxes the VL53L0X TOF sensor was used. 6 such sensor mounted on a seperate mount were poised at the front, left and right of the robot for box detection and grid solving. Additional TOF sensor was poised at right back to assist in wall following.
 
-<img src = "TOF.jpeg" widht = 40% height = "300" align = "center">
+<img src = "media/TOF.jpeg" widht = 40% height = "300" align = "center">
 
 
  ## Mechanisms
