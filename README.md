@@ -4,8 +4,9 @@
 A multi-tasking robot with self-navigation was designed. The power supply, control system, sensor navigation and mechanical subsystems was planned thoroughly prior to execution. 
 
 ## 🤖 Robot Design
-
-<img src = "media/cover_photo.jpg" width = "300" height = "200" align ="center">
+<center>
+ <img src = "media/cover_photo.jpg" width = 60% height = "300">
+</center>
 
 Tasks to cover: 
 1. Line following - continuous and dashed lines.
@@ -46,6 +47,16 @@ Tasks to cover:
 • 3D Modelling 
 [![SolidWorks](https://img.shields.io/badge/SolidWorks-red?style=for-the-badge&logo=dassaultsystemes&logoColor=white)](docs/solidworks.md)
 
+## Navigation system
+1. The primary task of navigation was line following, hence a Reykha S8 sensor IR array was used due to the high precision and accuracy of the TCRT5000 sensor. To minimize cross-talk a custom enclosure was designed.
+
+<img src ="media/IR.jpeg" width = 40% height = "300" align = "center">
+
+2. To detect balls and boxes the VL53L0X TOF sensor was used. 6 such sensor mounted on a seperate mount were poised at the front, left and right of the robot for box detection and grid solving. Additional TOF sensor was poised at right back to assist in wall following.
+
+<img src = "media/TOF.jpeg" widht = 40% height = "300" align = "center">
+
+
  ## Mechanisms
 
  1. Gripper mechanism for ball picking.
@@ -58,7 +69,7 @@ The balls were mounted on a 10cm cylindrical mount and 6 such mounts were kept t
 
 2. Clamping and dragging mechanism for box picking.
 <p align = "center">
- 
+ <img src = "media/box_arm.jpeg" width = 45% height = "300">
  <img src = "media/box_arena.png" width = "45%" height = "300">
 </p>
 
@@ -66,7 +77,7 @@ The balls were mounted on a 10cm cylindrical mount and 6 such mounts were kept t
 Sinces boxes were of dimensions 5cm x 10cm x 10cm, it was decided to grab the box and drag along the way until being placed in the reserved ares of respective colour.
 
 3. Ball shooting mechanism.
-
+<img src = "media/shooting_arm.jpeg" width = 60% height = "300">
 
 The task was to shoot the picked ball through a ring placed in a pre-determined location. Hence a design with two design BLDC motors was used.
 
