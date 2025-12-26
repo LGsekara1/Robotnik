@@ -54,7 +54,14 @@ Tasks to cover:
 
 2. To detect balls and boxes the VL53L0X TOF sensor was used. 6 such sensor mounted on a seperate mount were poised at the front, left and right of the robot for box detection and grid solving. Additional TOF sensor was poised at right back to assist in wall following.
 
-<img src = "media/TOF.jpeg" widht = 40% height = "300" align = "center">
+<img src = "media/TOF.jpeg" width = 40% height = "300" align = "center">
+
+
+## Power distribution and power subsystem
+
+The robot was powered by a 11.1V 3-cell Li-Po battery which when full charged provides 12V which was a choice made so as to support the motors selected. The power distribution is as follows:
+
+<img src = "media/power.png" width - 60% height = "300">
 
 
  ## Mechanisms
