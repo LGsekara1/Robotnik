@@ -41,12 +41,18 @@ Tasks to cover:
 ## Software specs 💻
 • Programming language - C++
 
-• IDE - VS Code [![VS Code](https://img.shields.io/badge/VS%20Code-Setup-007ACC?style=for-the-badge&logo=visualstudiocode)](docs/vscode.md)
+For the final codebase check [Software stack](final_robot/)
 
-• Platform IO [![PlatformIO](https://img.shields.io/badge/PlatformIO-Documentation-blue?style=for-the-badge&logo=platformio)](docs/platformio.md)
+• IDE - VS Code | Platform IO 
 
 • 3D Modelling 
+
+
+[![VS Code](https://img.shields.io/badge/VS%20Code-Setup-007ACC?style=for-the-badge&logo=visualstudiocode)](docs/vscode.md)
+[![PlatformIO](https://img.shields.io/badge/PlatformIO-Documentation-blue?style=for-the-badge&logo=platformio)](docs/platformio.md)
 [![SolidWorks](https://img.shields.io/badge/SolidWorks-red?style=for-the-badge&logo=dassaultsystemes&logoColor=white)](docs/solidworks.md)
+
+
 
 ## Navigation system
 1. The primary task of navigation was line following, hence a Reykha S8 sensor IR array was used due to the high precision and accuracy of the TCRT5000 sensor. To minimize cross-talk a custom enclosure was designed.
