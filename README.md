@@ -3,6 +3,8 @@
 ## ℹ️ Project Overview
 A multi-tasking robot with self-navigation was designed. The power supply, control system, sensor navigation and mechanical subsystems was planned thoroughly prior to execution. 
 
+See our robot in action 👉[Video](https://youtu.be/6DnAYfu71ag?si=n5rewHMed_cW9Dc3)
+
 ## 🤖 Robot Design
 <center>
  <img src = "media/cover_photo.jpg" width = 60% height = "300">
@@ -109,7 +111,7 @@ The task was to shoot the picked ball through a ring placed in a pre-determined 
 
 
 ---
-@2025 Team MOSFET - Made with ❤️ at ENTC
+@2025 Team Robotnik - Made with ❤️ at ENTC
 
 All rights reserved
 
